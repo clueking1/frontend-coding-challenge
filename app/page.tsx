@@ -7,6 +7,10 @@ export default function Home() {
 
   const { data, isFetching, secondsLeft } = useGetCryptoPrices()
 
+  const sortedTokens = data?.data
+    ? [...data.data].sort((a, b) => a.name.localeCompare(b.name))
+    : [];
+
   return (
     <div className='flex justify-center items-center w-full p-6 flex-col gap-6'>
       <div className='flex-col text-center'>
@@ -14,10 +18,10 @@ export default function Home() {
         <span>{isFetching ? 'Updating...' : `Next update in: ${secondsLeft}s`}</span>
       </div>
 
-      <BuyForm tokenNames={data?.data.map(t => t.name) ?? []} />
+      <BuyForm tokenNames={sortedTokens.map(t => t.name) ?? []} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {data?.data.map((token) => (
+        {sortedTokens.map((token) => (
             <TokenCard key={token.id} isFetching={isFetching} token={token} />
         ))}
       </div>
