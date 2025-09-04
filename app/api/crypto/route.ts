@@ -1,5 +1,21 @@
 import { NextResponse } from 'next/server';
 
+export type TToken = {
+  id: number
+  name: string
+  symbol: string
+  quote: {
+    USD: {
+      price: number
+    }
+  }
+}
+
+export interface IResponse {
+  status: Record<string, unknown>
+  data: TToken[]
+}
+
 export async function GET() {
   try {
     const res = await fetch(
@@ -9,7 +25,7 @@ export async function GET() {
         }
     );
     if (!res.ok) throw new Error(`CMC API error: ${res.status} ${res.statusText}`);
-    const data = await res.json();
+    const data = await res.json() as IResponse
     return NextResponse.json(data);
   } catch {
     return NextResponse.json({ error: 'Could not get prices' }, { status: 500 });
