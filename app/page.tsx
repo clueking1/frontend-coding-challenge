@@ -2,6 +2,7 @@
 import {useGetCryptoPrices} from '~/app/Hooks/useGetCryptoPrices';
 import {TokenCard} from '~/app/Components/TokenCard';
 import {BuyForm} from '~/app/Components/BuyForm';
+import {Header} from '~/app/Components/Header';
 
 export default function Home() {
 
@@ -13,10 +14,7 @@ export default function Home() {
 
   return (
     <div className='flex justify-center items-center w-full p-6 flex-col gap-6'>
-      <div className='flex-col text-center'>
-        <h1 className='font-bold text-3xl'>Crypto Prices</h1>
-        <span>{isFetching ? 'Updating...' : `Next update in: ${secondsLeft}s`}</span>
-      </div>
+      <Header isFetching={isFetching} secondsLeft={secondsLeft} />
 
       <BuyForm tokenNames={sortedTokens.map(t => t.name) ?? []} />
 
