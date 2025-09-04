@@ -28,7 +28,7 @@ export default function Home() {
     <div className='flex justify-center items-center w-full p-6 flex-col gap-6'>
       <Header isFetching={isFetching} secondsLeft={secondsLeft} />
 
-      <BuyForm key={isFetching ? '1' : '2'} tokenNames={tokenNames} />
+      <BuyForm key={`${tokenNames[0]}key`} tokenNames={tokenNames} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {isFetching ? (
