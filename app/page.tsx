@@ -21,11 +21,14 @@ export default function Home() {
       : [];
   const fetchingSkeleton = Array.from({ length: 10 })
 
+  const name = sortedTokens.map(t => t.name)
+  const tokenNames = name.length > 0 ? name : ['Loading...']
+
   return (
     <div className='flex justify-center items-center w-full p-6 flex-col gap-6'>
       <Header isFetching={isFetching} secondsLeft={secondsLeft} />
 
-      <BuyForm tokenNames={sortedTokens.map(t => t?.name) ?? []} />
+      <BuyForm key={isFetching ? '1' : '2'} tokenNames={tokenNames} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {isFetching ? (

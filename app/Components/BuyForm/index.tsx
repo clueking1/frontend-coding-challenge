@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const BuyForm = ({ tokenNames }: Props) => {
-    const [amount, setAmount] = useState<string>(''); // keep as string
+    const [amount, setAmount] = useState('');
     const [token, setToken] = useState(tokenNames[0] ?? '');
 
     function handleSubmit(e: FormEvent) {
@@ -34,7 +34,7 @@ export const BuyForm = ({ tokenNames }: Props) => {
                 max={5000}
                 placeholder="0"
                 value={amount}
-                onChange={(e) => setAmount(e.target.value)} // no Number() here
+                onChange={(e) => setAmount(e.target.value)}
             />
             <span>of</span>
             <select
@@ -42,6 +42,7 @@ export const BuyForm = ({ tokenNames }: Props) => {
                 name="token"
                 value={token}
                 onChange={(e) => setToken(e.target.value)}
+                disabled={tokenNames[0] === 'Loading...'}
             >
                 {tokenNames.map((name) => (
                     <option key={name} value={name}>
