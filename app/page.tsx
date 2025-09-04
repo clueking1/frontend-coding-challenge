@@ -44,9 +44,6 @@ export default function Home() {
                   ))}
               </>
           )}
-        {sortedTokens.map((token) => (
-            <TokenCard key={token?.id} isFetching={isFetching} token={token} />
-        ))}
       </div>
     </div>
   );
