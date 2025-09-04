@@ -1,17 +1,16 @@
-import { TToken } from '~/app/api/crypto/route';
+import {TToken} from '~/app/api/crypto/route';
 
 interface Props {
     isFetching: boolean;
-    token: TToken;
+    token: TToken | undefined;
 }
 
 export const TokenCard = ({ isFetching, token }: Props) => {
     return (
         <div
-            key={token.id}
             className="flex flex-col items-center justify-center border-2 rounded-xl p-6 w-64 h-40 shadow-md"
         >
-            {isFetching ? (
+            {(isFetching || !token )? (
                 <>
                     <div className="h-6 w-32 bg-gray-300 rounded animate-pulse mb-2" />
                     <div className="h-5 w-20 bg-gray-300 rounded animate-pulse" />
